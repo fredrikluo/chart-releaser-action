@@ -19,6 +19,9 @@ inputs:
   charts_repo_url:
     description: "The GitHub Pages URL to the charts repo (default: https://<owner>.github.io/<repo>)"
     required: false
+  repo:
+    description: "Repo to upload released package"
+    required: true
   install_dir:
     description: "Where to install the cr tool"
     required: false
@@ -33,8 +36,8 @@ runs:
   using: composite
   steps:
     - run: |
-        owner=$(cut -d '/' -f 1 <<< "$GITHUB_REPOSITORY")
-        repo=$(cut -d '/' -f 2 <<< "$GITHUB_REPOSITORY")
+        owner=$(cut -d '/' -f 1 <<< inputs.repo)
+        repo=$(cut -d '/' -f 2 <<< inputs.repo)
 
         args=(--owner "$owner" --repo "$repo")
         args+=(--charts-dir "${{ inputs.charts_dir }}")
