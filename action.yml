@@ -36,8 +36,8 @@ runs:
   using: composite
   steps:
     - run: |
-        owner=$(cut -d '/' -f 1 <<< inputs.repo)
-        repo=$(cut -d '/' -f 2 <<< inputs.repo)
+        owner=$(cut -d '/' -f 1 <<< ${{ inputs.repo }})
+        repo=$(cut -d '/' -f 2 <<< ${{ inputs.repo }})
 
         args=(--owner "$owner" --repo "$repo")
         args+=(--charts-dir "${{ inputs.charts_dir }}")
