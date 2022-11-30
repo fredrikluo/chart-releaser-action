@@ -284,7 +284,8 @@ package_chart() {
 }
 
 release_charts() {
-    local args=(-o "$owner" -r "$repo" -c "$(git rev-parse HEAD)")
+    local commit = $(git ls-remote git@github.com:$owner/$repo.git  | head -1 | sed "s/HEAD//")
+    local args=(-o "$owner" -r "$repo" -c "$commit")
     if [[ -n "$config" ]]; then
         args+=(--config "$config")
     fi
