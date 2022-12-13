@@ -290,7 +290,7 @@ release_charts() {
         args+=(--config "$config")
     fi
 
-    echo 'Releasing charts...'
+    echo 'Releasing charts with: $args'
     cr upload "${args[@]}"
 }
 
@@ -300,7 +300,7 @@ update_index() {
         args+=(--config "$config")
     fi
 
-    echo 'Updating charts repo index...'
+    echo 'Updating charts repo index with: $args'
     cr index "${args[@]}"
 }
 
